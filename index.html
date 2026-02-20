@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShopGuard — Alcohol Shop Monitoring System</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/sidebar.css" />
+  <link rel="stylesheet" href="css/login.css" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════
+       LOGIN PAGE
+  ══════════════════════════════════════ -->
+  <div id="loginPage" class="login-page">
+    <div class="login-bg"></div>
+    <div class="login-card">
+
+      <div class="login-logo">
+        <span class="login-logo-icon">🍺</span>
+        <div class="login-logo-text">ShopGuard</div>
+        <div class="login-logo-sub">Alcohol Shop Monitoring System</div>
+      </div>
+
+      <div class="login-title">Welcome Back</div>
+      <div class="login-subtitle">Sign in to your account to continue</div>
+
+      <!-- Role Tabs -->
+      <div class="login-role-tabs">
+        <button class="login-tab active" onclick="selectLoginRole('admin', this)">👮 Admin</button>
+        <button class="login-tab"        onclick="selectLoginRole('citizen', this)">👤 Citizen</button>
+        <button class="login-tab"        onclick="selectLoginRole('owner', this)">🏪 Owner</button>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-input" id="loginEmail"
+               placeholder="Enter your email" value="admin@shopguard.gov" />
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-input" id="loginPass"
+               placeholder="Enter password" value="••••••••" />
+      </div>
+
+      <div class="login-options">
+        <label class="login-remember">
+          <input type="checkbox" checked /> Remember me
+        </label>
+        <span class="login-forgot">Forgot password?</span>
+      </div>
+
+      <button class="btn btn-primary btn-full" style="padding:14px" onclick="doLogin()">
+        Sign In →
+      </button>
+
+      <div class="login-register">
+        Don't have an account? <span onclick="showRegister()">Register here</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       MAIN APP
+  ══════════════════════════════════════ -->
+  <div id="app" style="display:none">
+    <div class="app-layout">
+
+      <!-- Sidebar (shared across all pages) -->
+      <div id="sidebarContainer"></div>
+
+      <!-- Main content area -->
+      <div class="main-content">
+
+        <!-- Topbar -->
+        <div id="topbarContainer"></div>
+
+        <!-- Page content -->
+        <div class="page-content">
+          <div id="pageContainer"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- All Modals -->
+  <div id="modalsContainer"></div>
+
+  <!-- JavaScript (order matters) -->
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/complaints.js"></script>
+  <script src="js/shops.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- Load components dynamically -->
+  <script>
+    // Inject sidebar, topbar, pages, modals from their HTML files
+    Promise.all([
+      fetch('pages/sidebar.html').then(r => r.text()),
+      fetch('pages/topbar.html').then(r => r.text()),
+      fetch('pages/dashboard.html').then(r => r.text()),
+      fetch('pages/shops.html').then(r => r.text()),
+      fetch('pages/complaints.html').then(r => r.text()),
+      fetch('pages/analytics.html').then(r => r.text()),
+      fetch('pages/map.html').then(r => r.text()),
+      fetch('pages/citizen.html').then(r => r.text()),
+      fetch('pages/owner.html').then(r => r.text()),
+      fetch('pages/notifications.html').then(r => r.text()),
+      fetch('pages/profile.html').then(r => r.text()),
+      fetch('pages/modals.html').then(r => r.text()),
+    ]).then(([sidebar, topbar, dashboard, shops, complaints, analytics, map,
+              citizen, owner, notifications, profile, modals]) => {
+      document.getElementById('sidebarContainer').innerHTML  = sidebar;
+      document.getElementById('topbarContainer').innerHTML   = topbar;
+      document.getElementById('pageContainer').innerHTML     = dashboard + shops + complaints
+                                                             + analytics + map + citizen
+                                                             + owner + notifications + profile;
+      document.getElementById('modalsContainer').innerHTML   = modals;
+
+      // Re-init after inject
+      document.querySelectorAll('.modal-overlay').forEach(overlay => {
+        overlay.addEventListener('click', e => {
+          if (e.target === overlay) overlay.classList.remove('open');
+        });
+      });
+      document.querySelectorAll('.filter-bar').forEach(bar => {
+        bar.querySelectorAll('.filter-chip').forEach(chip => {
+          chip.addEventListener('click', function() {
+            bar.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+            this.classList.add('active');
+          });
+        });
+      });
+      renderShopsTable();
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!-- pages/dashboard.html -->
+<div class="page active" id="page-dashboard">
+
+    <!-- Stats Row -->
+    <div class="stats-grid">
+      <div class="stat-card" style="--card-accent:var(--accent)">
+        <div class="stat-icon">🏪</div>
+        <div class="stat-label">Total Shops</div>
+        <div class="stat-value">248</div>
+        <div class="stat-sub">Licensed &amp; Registered</div>
+        <div class="stat-trend trend-up">↑ +12 this month</div>
+      </div>
+      <div class="stat-card" style="--card-accent:var(--danger)">
+        <div class="stat-icon">📢</div>
+        <div class="stat-label">Open Complaints</div>
+        <div class="stat-value">47</div>
+        <div class="stat-sub">Pending resolution</div>
+        <div class="stat-trend trend-down">↑ +8 this week</div>
+      </div>
+      <div class="stat-card" style="--card-accent:var(--warning)">
+        <div class="stat-icon">⚠️</div>
+        <div class="stat-label">Violations</div>
+        <div class="stat-value">19</div>
+        <div class="stat-sub">Active violations</div>
+        <div class="stat-trend trend-down">↓ -3 resolved</div>
+      </div>
+      <div class="stat-card" style="--card-accent:var(--danger)">
+        <div class="stat-icon">📋</div>
+        <div class="stat-label">Expiring Licenses</div>
+        <div class="stat-value">11</div>
+        <div class="stat-sub">Within 30 days</div>
+        <div class="stat-trend trend-down">⚠️ Action needed</div>
+      </div>
+    </div>
+  
+    <!-- 2-col: Complaints + Shops -->
+    <div class="grid-2">
+  
+      <!-- Recent Complaints -->
+      <div class="card">
+        <div class="section-header">
+          <div class="section-title">Recent Complaints</div>
+          <span class="section-action" onclick="goTo('complaints-admin')">View All →</span>
+        </div>
+  
+        <div class="complaint-card">
+          <div class="complaint-header">
+            <div>
+              <div class="complaint-id">#CMP-2024-0891</div>
+              <div class="complaint-title">Selling after permitted hours</div>
+            </div>
+            <span class="badge badge-danger"><span class="priority-dot priority-high"></span>High</span>
+          </div>
+          <div class="complaint-meta">
+            <span>🏪 Lucky Beer Store</span>
+            <span>📍 Sector 14</span>
+            <span>🕐 2h ago</span>
+          </div>
+          <div class="complaint-actions">
+            <button class="btn btn-outline btn-sm" onclick="openComplaintModal()">Review</button>
+            <button class="btn btn-success btn-sm">Assign Officer</button>
+          </div>
+        </div>
+  
+        <div class="complaint-card">
+          <div class="complaint-header">
+            <div>
+              <div class="complaint-id">#CMP-2024-0890</div>
+              <div class="complaint-title">Selling to minor suspected</div>
+            </div>
+            <span class="badge badge-danger"><span class="priority-dot priority-high"></span>High</span>
+          </div>
+          <div class="complaint-meta">
+            <span>🏪 Star Wines</span>
+            <span>📍 Sector 7</span>
+            <span>🕐 5h ago</span>
+          </div>
+          <div class="complaint-actions">
+            <button class="btn btn-outline btn-sm" onclick="openComplaintModal()">Review</button>
+            <button class="btn btn-success btn-sm">Assign Officer</button>
+          </div>
+        </div>
+  
+        <div class="complaint-card">
+          <div class="complaint-header">
+            <div>
+              <div class="complaint-id">#CMP-2024-0889</div>
+              <div class="complaint-title">No price display board</div>
+            </div>
+            <span class="badge badge-warning"><span class="priority-dot priority-medium"></span>Medium</span>
+          </div>
+          <div class="complaint-meta">
+            <span>🏪 City Bar &amp; Drinks</span>
+            <span>📍 Market St</span>
+            <span>🕐 1d ago</span>
+          </div>
+          <div class="complaint-actions">
+            <button class="btn btn-outline btn-sm" onclick="openComplaintModal()">Review</button>
+            <button class="btn btn-success btn-sm">Assign Officer</button>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Shop Status -->
+      <div class="card">
+        <div class="section-header">
+          <div class="section-title">Shop Status</div>
+          <span class="section-action" onclick="goTo('shops')">Manage →</span>
+        </div>
+  
+        <div class="shop-row">
+          <div class="shop-avatar">🍺</div>
+          <div class="shop-info">
+            <div class="shop-name">Lucky Beer Store</div>
+            <div class="shop-meta">Lic: LQ-2024-1042 · Sector 14</div>
+          </div>
+          <span class="badge badge-success">● Active</span>
+        </div>
+  
+        <div class="shop-row">
+          <div class="shop-avatar">🍷</div>
+          <div class="shop-info">
+            <div class="shop-name">Star Wines</div>
+            <div class="shop-meta">Lic: LQ-2024-0876 · Sector 7</div>
+          </div>
+          <span class="badge badge-warning">⚠ Review</span>
+        </div>
+  
+        <div class="shop-row">
+          <div class="shop-avatar">🥃</div>
+          <div class="shop-info">
+            <div class="shop-name">City Bar &amp; Drinks</div>
+            <div class="shop-meta">Lic: LQ-2023-0541 · Market St</div>
+          </div>
+          <span class="badge badge-danger">✕ Suspended</span>
+        </div>
+  
+        <div class="shop-row">
+          <div class="shop-avatar">🍻</div>
+          <div class="shop-info">
+            <div class="shop-name">Royal Beverages</div>
+            <div class="shop-meta">Lic: LQ-2024-1199 · North Ave</div>
+          </div>
+          <span class="badge badge-success">● Active</span>
+        </div>
+      </div>
+  
+    </div>
+  
+    <!-- 3-col charts -->
+    <div class="grid-3">
+  
+      <!-- Monthly Complaints Chart -->
+      <div class="card">
+        <div class="section-title" style="margin-bottom:16px">Monthly Complaints</div>
+        <div class="chart-bars">
+          <div class="chart-bar-wrap"><div class="chart-bar" style="height:40%;background:var(--info)"></div><div class="chart-bar-label">Sep</div><div class="chart-bar-val">18</div></div>
+          <div class="chart-bar-wrap"><div class="chart-bar" style="height:60%;background:var(--info)"></div><div class="chart-bar-label">Oct</div><div class="chart-bar-val">27</div></div>
+          <div class="chart-bar-wrap"><div class="chart-bar" style="height:80%;background:var(--info)"></div><div class="chart-bar-label">Nov</div><div class="chart-bar-val">36</div></div>
+          <div class="chart-bar-wrap"><div class="chart-bar" style="height:55%;background:var(--accent)"></div><div class="chart-bar-label">Dec</div><div class="chart-bar-val">25</div></div>
+          <div class="chart-bar-wrap"><div class="chart-bar" style="height:70%;background:var(--accent)"></div><div class="chart-bar-label">Jan</div><div class="chart-bar-val">31</div></div>
+          <div class="chart-bar-wrap"><div class="chart-bar" style="height:100%;background:var(--danger)"></div><div class="chart-bar-label">Feb</div><div class="chart-bar-val">47</div></div>
+        </div>
+      </div>
+  
+      <!-- Complaint Types -->
+      <div class="card">
+        <div class="section-title" style="margin-bottom:16px">Complaint Types</div>
+        <div class="progress-wrap">
+          <div class="progress-label"><span>After-hours selling</span><span>34%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:34%;background:var(--danger)"></div></div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-label"><span>Minor selling</span><span>28%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:28%;background:var(--warning)"></div></div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-label"><span>License violations</span><span>20%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:20%;background:var(--info)"></div></div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-label"><span>Nuisance/disturbance</span><span>18%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:18%;background:var(--success)"></div></div>
+        </div>
+      </div>
+  
+      <!-- Shop Compliance Donut -->
+      <div class="card">
+        <div class="section-title" style="margin-bottom:16px">Shop Compliance</div>
+        <div style="text-align:center;padding:10px 0">
+          <div style="width:100px;height:100px;border-radius:50%;
+               background:conic-gradient(var(--success) 0% 72%, var(--warning) 72% 87%, var(--danger) 87% 100%);
+               margin:0 auto 16px"></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2)">
+            <div style="width:10px;height:10px;border-radius:3px;background:var(--success)"></div> Compliant (72%)
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2)">
+            <div style="width:10px;height:10px;border-radius:3px;background:var(--warning)"></div> Under Review (15%)
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2)">
+            <div style="width:10px;height:10px;border-radius:3px;background:var(--danger)"></div> Non-Compliant (13%)
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  

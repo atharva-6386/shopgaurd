@@ -1,0 +1,264 @@
+<!-- pages/complaints.html -->
+<div class="page" id="page-complaints-admin">
+
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+      <div>
+        <h2 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800">Complaint Management</h2>
+        <p style="color:var(--text2);font-size:14px;margin-top:4px">47 open · 12 high priority</p>
+      </div>
+      <button class="btn btn-outline">⬇ Export Report</button>
+    </div>
+  
+    <div class="filter-bar">
+      <div class="filter-chip active">All (127)</div>
+      <div class="filter-chip">Open (47)</div>
+      <div class="filter-chip">In Progress (28)</div>
+      <div class="filter-chip">Resolved (42)</div>
+      <div class="filter-chip">⚠️ High Priority (12)</div>
+      <div class="filter-chip">🤖 AI Flagged</div>
+    </div>
+  
+    <div class="card">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Type</th>
+              <th>Shop</th>
+              <th>Filed By</th>
+              <th>Priority <span class="ai-badge">🤖 AI</span></th>
+              <th>Status</th>
+              <th>Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="mono" style="color:var(--text3)">#CMP-0891</span></td>
+              <td>After-hours selling</td>
+              <td>Lucky Beer Store</td>
+              <td>Citizen #4421</td>
+              <td><span class="badge badge-danger"><span class="priority-dot priority-high"></span>High</span></td>
+              <td><span class="badge badge-warning">Open</span></td>
+              <td>Feb 17</td>
+              <td><button class="btn btn-primary btn-sm" onclick="openComplaintModal()">Review</button></td>
+            </tr>
+            <tr>
+              <td><span class="mono" style="color:var(--text3)">#CMP-0890</span></td>
+              <td>Selling to minors</td>
+              <td>Star Wines</td>
+              <td>Citizen #3812</td>
+              <td><span class="badge badge-danger"><span class="priority-dot priority-high"></span>High</span></td>
+              <td><span class="badge badge-info">In Progress</span></td>
+              <td>Feb 17</td>
+              <td><button class="btn btn-primary btn-sm" onclick="openComplaintModal()">Review</button></td>
+            </tr>
+            <tr>
+              <td><span class="mono" style="color:var(--text3)">#CMP-0889</span></td>
+              <td>No price display</td>
+              <td>City Bar</td>
+              <td>Citizen #2201</td>
+              <td><span class="badge badge-warning"><span class="priority-dot priority-medium"></span>Medium</span></td>
+              <td><span class="badge badge-warning">Open</span></td>
+              <td>Feb 16</td>
+              <td><button class="btn btn-primary btn-sm" onclick="openComplaintModal()">Review</button></td>
+            </tr>
+            <tr>
+              <td><span class="mono" style="color:var(--text3)">#CMP-0888</span></td>
+              <td>Unlicensed sale</td>
+              <td>Unknown Stall</td>
+              <td>Citizen #1984</td>
+              <td><span class="badge badge-danger"><span class="priority-dot priority-high"></span>High</span></td>
+              <td><span class="badge badge-warning">Open</span></td>
+              <td>Feb 16</td>
+              <td><button class="btn btn-primary btn-sm" onclick="openComplaintModal()">Review</button></td>
+            </tr>
+            <tr>
+              <td><span class="mono" style="color:var(--text3)">#CMP-0887</span></td>
+              <td>Noise / Nuisance</td>
+              <td>Royal Beverages</td>
+              <td>Citizen #5102</td>
+              <td><span class="badge badge-success"><span class="priority-dot priority-low"></span>Low</span></td>
+              <td><span class="badge badge-success">Resolved</span></td>
+              <td>Feb 15</td>
+              <td><button class="btn btn-outline btn-sm">View</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+  </div>
+  
+  <!-- ── Citizen: File Complaint ── -->
+  <div class="page" id="page-file-complaint">
+  
+    <div style="margin-bottom:24px">
+      <h2 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800">File a Complaint</h2>
+      <p style="color:var(--text2);font-size:14px;margin-top:4px">Report illegal activities — anonymously or with your ID</p>
+    </div>
+  
+    <div class="grid-2">
+  
+      <!-- Left: Form -->
+      <div>
+        <div class="card" style="margin-bottom:20px">
+          <div class="section-title" style="margin-bottom:20px">Complaint Details</div>
+  
+          <div class="form-group">
+            <label class="form-label">Complaint Type *</label>
+            <select class="form-select" id="complaintType" onchange="detectPriority()">
+              <option value="">— Select Type —</option>
+              <option value="after-hours">After-hours selling</option>
+              <option value="minor">Selling to minors</option>
+              <option value="unlicensed">Unlicensed shop</option>
+              <option value="nuisance">Noise / Nuisance</option>
+              <option value="price">Price violation</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+  
+          <div class="form-group">
+            <label class="form-label">Shop Name / Location *</label>
+            <input type="text" class="form-input" id="complaintShop" placeholder="Enter shop name or address" />
+          </div>
+  
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Date of Incident</label>
+              <input type="date" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Time of Incident</label>
+              <input type="time" class="form-input" />
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label class="form-label">Description *</label>
+            <textarea class="form-textarea" id="complaintDesc" oninput="detectPriority()"
+              placeholder="Describe the incident in detail..."></textarea>
+          </div>
+  
+          <div class="form-group">
+            <label class="form-label">🤖 AI Priority Detection <span class="ai-badge">Auto</span></label>
+            <div id="priorityResult"
+                 style="padding:12px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;font-size:13px;color:var(--text2)">
+              Fill in the complaint type and description to auto-detect priority...
+            </div>
+          </div>
+        </div>
+  
+        <!-- Evidence -->
+        <div class="card">
+          <div class="section-title" style="margin-bottom:16px">Evidence Upload</div>
+          <div class="upload-area" onclick="openFileUpload()">
+            <div class="upload-icon">📎</div>
+            <div class="upload-text">Click or drag &amp; drop evidence files</div>
+            <div class="upload-sub">Images, videos, documents (max 50MB)</div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Right: Location + Submit -->
+      <div>
+        <div class="card" style="margin-bottom:20px">
+          <div class="section-title" style="margin-bottom:16px">📍 Location</div>
+          <div class="map-container" style="height:200px;margin-bottom:14px">
+            <div class="map-grid"></div>
+            <div class="map-pin" style="left:50%;top:50%">📍</div>
+          </div>
+          <button class="btn btn-outline btn-full" onclick="captureLocation()">
+            📍 Capture My Location
+          </button>
+        </div>
+  
+        <div class="card" style="margin-bottom:20px">
+          <div class="section-title" style="margin-bottom:16px">Reporting As</div>
+          <label style="display:flex;align-items:center;gap:10px;cursor:pointer;margin-bottom:12px;font-size:14px;color:var(--text2)">
+            <input type="radio" name="anon" value="named" checked style="accent-color:var(--accent)" />
+            Report with my account
+          </label>
+          <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-size:14px;color:var(--text2)">
+            <input type="radio" name="anon" value="anonymous" style="accent-color:var(--accent)" />
+            Report Anonymously
+          </label>
+        </div>
+  
+        <button class="btn btn-primary btn-full" style="padding:14px;font-size:15px" onclick="submitComplaint()">
+          📢 Submit Complaint
+        </button>
+        <p style="font-size:12px;color:var(--text3);text-align:center;margin-top:10px">
+          A unique Complaint ID will be generated automatically
+        </p>
+      </div>
+  
+    </div>
+  </div>
+  
+  <!-- ── Citizen: My Complaints ── -->
+  <div class="page" id="page-my-complaints">
+  
+    <div style="margin-bottom:24px">
+      <h2 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800">My Complaints</h2>
+      <p style="color:var(--text2);font-size:14px;margin-top:4px">Track your filed complaints</p>
+    </div>
+  
+    <div class="complaint-card">
+      <div class="complaint-header">
+        <div>
+          <div class="complaint-id">#CMP-2024-0891</div>
+          <div class="complaint-title">After-hours selling reported</div>
+        </div>
+        <span class="badge badge-info">In Progress</span>
+      </div>
+      <div class="complaint-meta">
+        <span>🏪 Lucky Beer Store</span>
+        <span>📅 Feb 17, 2025</span>
+        <span>👮 Officer Assigned</span>
+      </div>
+      <div style="margin-top:16px">
+        <div class="section-title" style="font-size:13px;margin-bottom:12px">Timeline</div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot active"></div>
+            <div><div class="timeline-title">Complaint Submitted</div><div class="timeline-time">Feb 17, 10:32 AM</div></div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot active"></div>
+            <div><div class="timeline-title">Received by Admin</div><div class="timeline-time">Feb 17, 10:45 AM</div></div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot active"></div>
+            <div><div class="timeline-title">Field Officer Assigned</div><div class="timeline-time">Feb 17, 2:00 PM</div></div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div><div class="timeline-title" style="color:var(--text3)">Investigation Pending</div><div class="timeline-time">—</div></div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div><div class="timeline-title" style="color:var(--text3)">Resolution</div><div class="timeline-time">—</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="complaint-card">
+      <div class="complaint-header">
+        <div>
+          <div class="complaint-id">#CMP-2024-0811</div>
+          <div class="complaint-title">Noise nuisance from bar</div>
+        </div>
+        <span class="badge badge-success">Resolved</span>
+      </div>
+      <div class="complaint-meta">
+        <span>🏪 Royal Beverages</span>
+        <span>📅 Feb 10, 2025</span>
+        <span>✅ Action Taken</span>
+      </div>
+    </div>
+  
+  </div>
+  

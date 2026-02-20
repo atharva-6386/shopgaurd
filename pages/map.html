@@ -1,0 +1,140 @@
+<!-- pages/map.html -->
+<div class="page" id="page-map">
+
+    <div style="margin-bottom:24px">
+      <h2 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800">Location &amp; Map View</h2>
+      <p style="color:var(--text2);font-size:14px;margin-top:4px">Real-time shop &amp; complaint heatmap</p>
+    </div>
+  
+    <div class="card" style="margin-bottom:20px">
+      <div class="filter-bar" style="margin-bottom:16px">
+        <div class="filter-chip active">All Shops</div>
+        <div class="filter-chip">Active Only</div>
+        <div class="filter-chip">Complaints Heatmap</div>
+        <div class="filter-chip">Violations Only</div>
+      </div>
+  
+      <div class="map-container">
+        <div class="map-grid"></div>
+  
+        <!-- Shop Pins -->
+        <div class="map-pin" style="left:20%;top:30%">🏪<div class="map-pin-label">Lucky Beer</div></div>
+        <div class="map-pin" style="left:45%;top:20%">🍷<div class="map-pin-label">Star Wines</div></div>
+        <div class="map-pin" style="left:60%;top:55%">🥃<div class="map-pin-label">City Bar</div></div>
+        <div class="map-pin" style="left:30%;top:65%">🍻<div class="map-pin-label">Royal Bev</div></div>
+        <div class="map-pin" style="left:75%;top:35%">🍺<div class="map-pin-label">Golden</div></div>
+  
+        <!-- Complaint Cluster -->
+        <div class="map-pin" style="left:50%;top:70%;font-size:16px">
+          🔴<div class="map-pin-label" style="color:var(--danger)">12 complaints</div>
+        </div>
+  
+        <!-- Legend -->
+        <div class="map-legend">
+          <div>🏪 Registered Shop</div>
+          <div style="color:var(--danger)">🔴 Complaint Cluster</div>
+          <div style="color:var(--warning)">⚠️ Violation</div>
+        </div>
+  
+        <!-- Info -->
+        <div class="map-info">📍 City Zone A — 248 shops</div>
+      </div>
+    </div>
+  
+    <div class="grid-2">
+      <!-- Heatmap -->
+      <div class="card">
+        <div class="section-title" style="margin-bottom:12px">Complaint Heatmap Zones</div>
+        <div style="font-size:13px;color:var(--text2);line-height:2.2">
+          🔴 Sector 14 — <strong style="color:var(--danger)">Very High (42)</strong><br>
+          🟠 Market Street — <strong style="color:var(--warning)">High (38)</strong><br>
+          🟡 Sector 7 — <strong style="color:var(--accent2)">Moderate (27)</strong><br>
+          🟢 North Avenue — <strong style="color:var(--success)">Low (19)</strong><br>
+          🟢 East Block — <strong style="color:var(--success)">Low (14)</strong>
+        </div>
+      </div>
+  
+      <!-- QR Verification -->
+      <div class="card">
+        <div class="section-title" style="margin-bottom:12px">🪪 QR License Verification</div>
+        <p style="font-size:13px;color:var(--text2);margin-bottom:16px">
+          Scan a shop's QR code to instantly verify license status
+        </p>
+        <div style="display:flex;gap:20px;align-items:center">
+          <div onclick="verifyQR()" style="cursor:pointer;width:100px;height:100px;border:2px solid var(--border);border-radius:10px;background:var(--surface2);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;transition:border-color .2s" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+            <span style="font-size:36px">📱</span>
+            <span style="font-size:11px;color:var(--text3)">Tap to Scan</span>
+          </div>
+          <div style="font-size:13px;color:var(--text2);line-height:2">
+            ✅ License Number<br>
+            ✅ Owner Name<br>
+            ✅ Expiry Date<br>
+            ✅ Active Status<br>
+            ✅ Violation Count
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Field Officers page embedded here -->
+    <div id="page-officers-inner" style="display:none"></div>
+  
+  </div>
+  
+  <!-- Field Officers (separate page) -->
+  <div class="page" id="page-officers">
+  
+    <div style="margin-bottom:24px">
+      <h2 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800">Field Officers</h2>
+      <p style="color:var(--text2);font-size:14px;margin-top:4px">Assign and manage field inspection officers</p>
+    </div>
+  
+    <div class="card">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Officer</th>
+              <th>Badge ID</th>
+              <th>Area</th>
+              <th>Active Cases</th>
+              <th>Resolved</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Officer Rajesh Kumar</strong></td>
+              <td><span class="mono">FO-001</span></td>
+              <td>Sector 14</td>
+              <td style="color:var(--warning);font-weight:700">4</td>
+              <td style="color:var(--success);font-weight:700">28</td>
+              <td><span class="badge badge-success">● On Duty</span></td>
+              <td><button class="btn btn-primary btn-sm" onclick="showToast('Case assigned to Officer Rajesh!','success')">Assign Case</button></td>
+            </tr>
+            <tr>
+              <td><strong>Officer Priya Nair</strong></td>
+              <td><span class="mono">FO-002</span></td>
+              <td>Market St</td>
+              <td style="color:var(--warning);font-weight:700">2</td>
+              <td style="color:var(--success);font-weight:700">41</td>
+              <td><span class="badge badge-success">● On Duty</span></td>
+              <td><button class="btn btn-primary btn-sm" onclick="showToast('Case assigned to Officer Priya!','success')">Assign Case</button></td>
+            </tr>
+            <tr>
+              <td><strong>Officer Sunil Verma</strong></td>
+              <td><span class="mono">FO-003</span></td>
+              <td>Sector 7</td>
+              <td style="color:var(--danger);font-weight:700">7</td>
+              <td style="color:var(--success);font-weight:700">19</td>
+              <td><span class="badge badge-warning">⚠ Overloaded</span></td>
+              <td><button class="btn btn-outline btn-sm">View Details</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+  </div>
+  

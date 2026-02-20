@@ -1,0 +1,140 @@
+<!-- pages/notifications.html -->
+<div class="page" id="page-notifications">
+
+    <div style="margin-bottom:24px">
+      <h2 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800">Notifications</h2>
+      <p style="color:var(--text2);font-size:14px;margin-top:4px">5 unread alerts</p>
+    </div>
+  
+    <div class="notif-item unread">
+      <div class="notif-icon" style="background:rgba(232,64,64,.1)">🚨</div>
+      <div class="notif-content">
+        <div class="notif-title">High Priority Complaint Filed</div>
+        <div class="notif-desc">New complaint #CMP-0891 — After-hours selling at Lucky Beer Store. Immediate review required.</div>
+        <div class="notif-time">2 hours ago</div>
+      </div>
+    </div>
+  
+    <div class="notif-item unread">
+      <div class="notif-icon" style="background:rgba(245,158,11,.1)">⏰</div>
+      <div class="notif-content">
+        <div class="notif-title">License Expiry Alert</div>
+        <div class="notif-desc">Golden Drinks (LQ-2024-0321) license expires in 12 days. Owner notification sent.</div>
+        <div class="notif-time">5 hours ago</div>
+      </div>
+    </div>
+  
+    <div class="notif-item unread">
+      <div class="notif-icon" style="background:rgba(48,201,126,.1)">✅</div>
+      <div class="notif-content">
+        <div class="notif-title">Complaint Resolved</div>
+        <div class="notif-desc">Complaint #CMP-0887 at Royal Beverages has been resolved by Field Officer Kumar.</div>
+        <div class="notif-time">1 day ago</div>
+      </div>
+    </div>
+  
+    <div class="notif-item unread">
+      <div class="notif-icon" style="background:rgba(192,132,252,.1)">🤖</div>
+      <div class="notif-content">
+        <div class="notif-title">AI: Fake Complaint Detected</div>
+        <div class="notif-desc">Complaint #CMP-0884 flagged as potential spam — same user filed 5 identical complaints this week.</div>
+        <div class="notif-time">2 days ago</div>
+      </div>
+    </div>
+  
+    <div class="notif-item">
+      <div class="notif-icon" style="background:rgba(232,160,32,.1)">📋</div>
+      <div class="notif-content">
+        <div class="notif-title">New Shop Registration</div>
+        <div class="notif-desc">Golden Drinks (SH-005) submitted a new registration application for admin review.</div>
+        <div class="notif-time">3 days ago</div>
+      </div>
+    </div>
+  
+    <div class="notif-item">
+      <div class="notif-icon" style="background:rgba(74,158,245,.1)">📊</div>
+      <div class="notif-content">
+        <div class="notif-title">Monthly Report Ready</div>
+        <div class="notif-desc">February 2025 compliance report is ready for download. 248 shops reviewed.</div>
+        <div class="notif-time">5 days ago</div>
+      </div>
+    </div>
+  
+  </div>
+  
+  <!-- ──────────────────────────────────────
+       PROFILE PAGE
+  ────────────────────────────────────── -->
+  <div class="page" id="page-profile">
+  
+    <div style="margin-bottom:24px">
+      <h2 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800">My Profile</h2>
+    </div>
+  
+    <div class="grid-2">
+  
+      <!-- Profile Info -->
+      <div class="card">
+        <div style="text-align:center;padding:20px 0;border-bottom:1px solid var(--border);margin-bottom:20px">
+          <div style="width:80px;height:80px;border-radius:20px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:40px;margin:0 auto 12px">
+            👮
+          </div>
+          <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:700">Admin Officer</div>
+          <div style="font-size:13px;color:var(--text2);margin-top:4px">Government Authority</div>
+        </div>
+  
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input type="text" class="form-input" value="Admin Officer" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-input" value="admin@shopguard.gov" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone Number</label>
+          <input type="tel" class="form-input" value="+91 98765 43210" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Department</label>
+          <input type="text" class="form-input" value="Excise &amp; License Department" />
+        </div>
+        <button class="btn btn-primary" onclick="showToast('Profile updated successfully!','success')">
+          Save Changes
+        </button>
+      </div>
+  
+      <!-- Security -->
+      <div class="card">
+        <div class="section-title" style="margin-bottom:20px">🔐 Security Settings</div>
+        <div class="form-group">
+          <label class="form-label">Current Password</label>
+          <input type="password" class="form-input" placeholder="Enter current password" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">New Password</label>
+          <input type="password" class="form-input" placeholder="Enter new password" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Confirm New Password</label>
+          <input type="password" class="form-input" placeholder="Confirm new password" />
+        </div>
+        <button class="btn btn-outline" onclick="showToast('Password changed successfully!','success')" style="margin-bottom:20px">
+          🔒 Change Password
+        </button>
+  
+        <div style="border-top:1px solid var(--border);padding-top:20px">
+          <div class="section-title" style="font-size:14px;margin-bottom:12px">OTP Verification</div>
+          <div class="form-group">
+            <label class="form-label">Phone for OTP</label>
+            <input type="tel" class="form-input" value="+91 98765 43210" />
+          </div>
+          <button class="btn btn-outline btn-full" onclick="showToast('OTP sent to your phone!','info')">
+            📱 Send OTP
+          </button>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  

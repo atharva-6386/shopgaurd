@@ -1,0 +1,42 @@
+<!-- pages/shops.html -->
+<div class="page" id="page-shops">
+
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+      <div>
+        <h2 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800">Shop Management</h2>
+        <p style="color:var(--text2);font-size:14px;margin-top:4px">248 registered shops</p>
+      </div>
+      <button class="btn btn-primary" onclick="openShopModal()">+ Register New Shop</button>
+    </div>
+  
+    <div class="filter-bar">
+      <div class="filter-chip active">All (248)</div>
+      <div class="filter-chip">Active (192)</div>
+      <div class="filter-chip">Pending (31)</div>
+      <div class="filter-chip">Suspended (14)</div>
+      <div class="filter-chip">Expired License (11)</div>
+    </div>
+  
+    <div class="card">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Shop</th>
+              <th>Owner</th>
+              <th>License No.</th>
+              <th>Expiry</th>
+              <th>Area</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="shopsTableBody">
+            <!-- Rendered by js/shops.js → renderShopsTable() -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+  </div>
+  

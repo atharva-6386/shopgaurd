@@ -1,0 +1,109 @@
+<!-- pages/sidebar.html -->
+<aside class="sidebar">
+
+    <!-- Logo -->
+    <div class="sidebar-logo">
+      <div class="logo-icon">🍺</div>
+      <div class="logo-text">ShopGuard</div>
+      <div class="logo-sub">Monitoring System</div>
+    </div>
+  
+    <!-- Role Badge -->
+    <div class="role-badge" onclick="toggleRoleSwitcher()">
+      <div class="role-avatar" id="sidebarAvatar">👮</div>
+      <div class="role-info">
+        <div class="role-name" id="sidebarName">Admin Officer</div>
+        <div class="role-type" id="sidebarRole">Government Authority</div>
+      </div>
+      <div class="role-caret">⌄</div>
+    </div>
+  
+    <!-- Role Switcher Dropdown -->
+    <div class="role-switcher" id="roleSwitcher">
+      <div class="role-option active" onclick="switchRole('admin')">👮 Admin (Authority)</div>
+      <div class="role-option"        onclick="switchRole('citizen')">👤 Citizen / Public</div>
+      <div class="role-option"        onclick="switchRole('owner')">🏪 Shop Owner</div>
+    </div>
+  
+    <!-- Navigation -->
+    <nav class="sidebar-nav">
+  
+      <!-- Admin Nav -->
+      <div class="nav-section" id="adminNav">
+        <div class="nav-section-label">Admin</div>
+        <div class="nav-item active" onclick="goTo('dashboard')">
+          <span class="nav-icon">📊</span> Dashboard
+        </div>
+        <div class="nav-item" onclick="goTo('shops')">
+          <span class="nav-icon">🏪</span> Shop Management
+        </div>
+        <div class="nav-item" onclick="goTo('complaints-admin')">
+          <span class="nav-icon">📢</span> All Complaints
+          <span class="nav-badge">12</span>
+        </div>
+        <div class="nav-item" onclick="goTo('analytics')">
+          <span class="nav-icon">📈</span> Analytics
+        </div>
+        <div class="nav-item" onclick="goTo('map')">
+          <span class="nav-icon">🗺️</span> Map View
+        </div>
+        <div class="nav-item" onclick="goTo('officers')">
+          <span class="nav-icon">👮</span> Field Officers
+        </div>
+      </div>
+  
+      <!-- Citizen Nav -->
+      <div class="nav-section" id="citizenNav" style="display:none">
+        <div class="nav-section-label">Citizen</div>
+        <div class="nav-item" onclick="goTo('citizen-home')">
+          <span class="nav-icon">🏠</span> Home
+        </div>
+        <div class="nav-item" onclick="goTo('file-complaint')">
+          <span class="nav-icon">📝</span> File Complaint
+        </div>
+        <div class="nav-item" onclick="goTo('my-complaints')">
+          <span class="nav-icon">📋</span> My Complaints
+        </div>
+        <div class="nav-item" onclick="goTo('map')">
+          <span class="nav-icon">🗺️</span> Find Shops
+        </div>
+      </div>
+  
+      <!-- Owner Nav -->
+      <div class="nav-section" id="ownerNav" style="display:none">
+        <div class="nav-section-label">Shop Owner</div>
+        <div class="nav-item" onclick="goTo('owner-dashboard')">
+          <span class="nav-icon">📊</span> My Dashboard
+        </div>
+        <div class="nav-item" onclick="goTo('my-shop')">
+          <span class="nav-icon">🏪</span> My Shop
+        </div>
+        <div class="nav-item" onclick="goTo('license')">
+          <span class="nav-icon">📄</span> License
+        </div>
+        <div class="nav-item" onclick="goTo('shop-complaints')">
+          <span class="nav-icon">⚠️</span> Complaints
+        </div>
+      </div>
+  
+      <!-- General Nav -->
+      <div class="nav-section">
+        <div class="nav-section-label">General</div>
+        <div class="nav-item" onclick="goTo('notifications')">
+          <span class="nav-icon">🔔</span> Notifications
+          <span class="nav-badge">5</span>
+        </div>
+        <div class="nav-item" onclick="goTo('profile')">
+          <span class="nav-icon">👤</span> Profile
+        </div>
+      </div>
+  
+    </nav>
+  
+    <!-- Logout -->
+    <div class="sidebar-footer">
+      <button class="logout-btn" onclick="doLogout()">🚪 Logout</button>
+    </div>
+  
+  </aside>
+  
